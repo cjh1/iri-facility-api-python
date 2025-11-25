@@ -21,8 +21,16 @@ class JobAttributes(BaseModel):
     custom_attributes: dict[str, str] = {}
 
 
+class VolumeMount(BaseModel):
+    source: str
+    target: str
+    read_only: bool = True
+
+
 class JobSpec(BaseModel):
     executable : str | None = None
+    image: str | None = None
+    volume_mounts: list[VolumeMount] = []
     arguments: list[str] = []
     directory: str | None = None
     name: str | None = None
